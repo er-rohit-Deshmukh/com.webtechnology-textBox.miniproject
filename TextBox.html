@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEXT BOX</title>
+   <link rel="stylesheet" href="TextBoxStyle.css">
+</head>
+<body>
+
+          <h1 align="center" class ="heading">TEXT BOX</h1>
+          <div class=" container" align = "center">
+            <form class="textboxform">
+
+                <label>Enter Your Text Below</label>
+                 <br><br>
+                <textarea  id="text" cols="70" rows="10" align ="center"  onkeyup="updateInfo()" autofocus></textarea>
+                 <br><br>
+                 
+                <button type="button" onclick="transFormUpperCase()">UPPERCASE</button>
+                <button type="button" onclick="transFormLowerCase()">LOWERCASE</button>
+                <button type="button" onclick="textUnderline()">UNDERLINE</button>
+                <button type="button" onclick="findText()">FIND</button>
+                <button type ="button" onclick="changeColor()">CHANGE COLOUR</button>
+                <button type="button" onclick="copyText()">COPY</button>
+
+                <br><br>
+                 <h2 id="textinfo">This text contain 0 word and 0 characters</h2>
+            </form>
+            
+            <script>
+             let  text =document.getElementById("text");
+             let textInfo = document.getElementById(`textinfo`);
+             let clr;
+
+                function transFormUpperCase()
+                {
+                    text.value = text.value.toUpperCase();
+                }
+
+                function transFormLowerCase()
+                {
+                    text.value = text.value.toLowerCase();
+                }
+
+                function findText()
+                {
+                    let searchText = prompt("Enter the Text: " );
+                    if(text.value.includes(searchText))
+                    {
+                        alert(`sreach Text "${searchText}" is Present`);
+                    }
+                    else
+                    {
+                        alert(`sreach Text "${searchText}" is not Present`);
+                    }
+                }
+                function changeColor()
+                {
+                     clr = prompt(("Enter the favoiute colour : ").toLowerCase());
+                      text.style.color=clr;             
+               }
+                function textUnderline()
+                {
+                    text.style.textDecoration=`underline 2px solid ${clr}` 
+                }
+
+                function copyText()
+                {
+                  navigator.clipboard.writeText(text.value)
+                  alert("Text copy successfully");
+                }
+
+                function updateInfo()
+                {
+                    let  numberOfWords = text.value.trim().split(" ").length;
+                    textInfo.innerHTML=`This text contain ${numberOfWords} word and ${text.value.length} characters`
+                }
+            </script>
+
+          </div>
+    
+</body>
+</html>
